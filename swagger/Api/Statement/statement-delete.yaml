@@ -1,0 +1,29 @@
+tags:
+  - Statement
+summary: Delete statement
+description: Delete statement
+operationId: deleteStatement
+parameters:
+  - name: id
+    in: path
+    required: true
+    description: Statement id
+responses:
+  '200':
+    description: Ok
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              properties:
+                success:
+                  type: bool
+                  example: true
+  '422':
+    description: Unprocessable Entity
+  '403':
+    description: Access denied for modifying statement
+security:
+  - bearer: [ ]

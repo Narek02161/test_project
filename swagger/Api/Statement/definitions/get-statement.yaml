@@ -1,0 +1,10 @@
+type: object
+properties:
+  limit:
+    type: integer
+    example: 100
+  page:
+    type: integer
+    example: 2
+  query:
+    type: string

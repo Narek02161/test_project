@@ -1,0 +1,13 @@
+openapi: 3.0.0
+info:
+  title: Test-api
+  version: v1
+host: localhost:8081
+tags:
+  - name: Auth
+    description: Api auth
+  - name: Statement
+    description: Api statement
+paths:
+  $ref: ./Api/index.yaml
+

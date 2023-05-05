@@ -1,0 +1,18 @@
+# Auth
+/auth/register:
+  post:
+    $ref: ./Auth/auth-register.yaml
+/auth/login:
+  post:
+    $ref: ./Auth/auth-login.yaml
+# Statement
+/statements:
+  post:
+    $ref: ./Statement/statement-create.yaml
+  get:
+    $ref: ./Statement/statement-index.yaml
+/statements/{id}:
+  patch:
+    $ref: ./Statement/statement-update.yaml
+  delete:
+    $ref: ./Statement/statement-delete.yaml

@@ -1,0 +1,31 @@
+tags:
+  - Statement
+summary: Get Statement
+description: Get all statement
+requestBody:
+  description: Get Statement
+  content:
+    application/json:
+      schema:
+        type: object
+        $ref: ./definitions/get-statement.yaml
+  required: true
+responses:
+  '200':
+    description: Ok
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            data:
+              type: array
+              items:
+                $ref: ./definitions/get-statement-response.yaml
+  '422':
+    description: Unprocessable Entity
+security:
+  - bearer: [ ]

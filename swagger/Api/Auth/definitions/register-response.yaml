@@ -1,0 +1,39 @@
+required:
+  - token_type
+  - access_token
+  - refresh_token
+  - user
+type: object
+properties:
+  token_type:
+    type: string
+    example: Bearer
+  access_token:
+    type: string
+    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiNzEwMDc1NDg0OGU3YzdjMTRhZ ...
+  refresh_token:
+    type: string
+    example: def50200ef90d29526b5f5252a31e1bfd6a4f3cac05501ee4007c55c4de10cd02a40293233869b5bc5ecac ...
+  expires_in:
+    type: integer
+    example: 86400
+  user:
+    type: object
+    required:
+      - email
+    properties:
+      email:
+        type: string
+        example: jon@gmail.com
+      created_at:
+        type: string
+        example: '2023-05-04'
+      display_name:
+        type: string
+        example: Jon
+      telegram_username:
+        type: string
+        example: jon-2001
+      language:
+        type: string
+        example: USA

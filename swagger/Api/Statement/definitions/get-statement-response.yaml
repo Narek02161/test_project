@@ -1,0 +1,24 @@
+required:
+type: object
+properties:
+  title:
+    type: string
+    example: Title
+  author_name:
+    type: string
+    example: Jon
+  date_published:
+    type: string
+    example: '2023-01-24'
+  source_url:
+    type: string
+    example: https://example.com
+  description:
+    type: string
+    example: Hello World
+  is_published:
+    type: bool
+    example: true
+  source_title:
+    type: string
+    example: Example

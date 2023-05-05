@@ -1,0 +1,20 @@
+required:
+  - email
+  - password
+type: object
+properties:
+  email:
+    type: string
+    example: jon@gmail.com
+  password:
+    type: string
+    example: 123456
+  display_name:
+    type: string
+    example: Jon
+  telegram_username:
+    type: string
+    example: jon-2001
+  language:
+    type: string
+    example: USA

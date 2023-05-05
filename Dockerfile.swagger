@@ -1,0 +1,12 @@
+FROM node:18-alpine
+
+WORKDIR /usr/src/app
+
+COPY ./swagger/ /usr/src/app/
+
+RUN npm i
+
+EXPOSE 3000
+RUN ls
+
+CMD npm run watch & npm run start

@@ -1,0 +1,584 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Test-api",
+    "version": "v1"
+  },
+  "host": "localhost:8081",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Api auth"
+    },
+    {
+      "name": "Statement",
+      "description": "Api statement"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register",
+        "description": "Register",
+        "operationId": "register",
+        "requestBody": {
+          "description": "Create statement",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "jon@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": 123456
+                  },
+                  "display_name": {
+                    "type": "string",
+                    "example": "Jon"
+                  },
+                  "telegram_username": {
+                    "type": "string",
+                    "example": "jon-2001"
+                  },
+                  "language": {
+                    "type": "string",
+                    "example": "USA"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "required": [
+                        "token_type",
+                        "access_token",
+                        "refresh_token",
+                        "user"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "token_type": {
+                          "type": "string",
+                          "example": "Bearer"
+                        },
+                        "access_token": {
+                          "type": "string",
+                          "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiNzEwMDc1NDg0OGU3YzdjMTRhZ ..."
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "example": "def50200ef90d29526b5f5252a31e1bfd6a4f3cac05501ee4007c55c4de10cd02a40293233869b5bc5ecac ..."
+                        },
+                        "expires_in": {
+                          "type": "integer",
+                          "example": 86400
+                        },
+                        "user": {
+                          "type": "object",
+                          "required": [
+                            "email"
+                          ],
+                          "properties": {
+                            "email": {
+                              "type": "string",
+                              "example": "jon@gmail.com"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-05-04"
+                            },
+                            "display_name": {
+                              "type": "string",
+                              "example": "Jon"
+                            },
+                            "telegram_username": {
+                              "type": "string",
+                              "example": "jon-2001"
+                            },
+                            "language": {
+                              "type": "string",
+                              "example": "USA"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "description": "Login",
+        "operationId": "login",
+        "requestBody": {
+          "description": "Create statement",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "jon@gmail.com",
+                    "required": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": 123456,
+                    "required": true
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "required": [
+                        "token_type",
+                        "access_token",
+                        "refresh_token"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "token_type": {
+                          "type": "string",
+                          "example": "Bearer"
+                        },
+                        "access_token": {
+                          "type": "string",
+                          "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiNzEwMDc1NDg0OGU3YzdjMTRhZ ..."
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "example": "def50200ef90d29526b5f5252a31e1bfd6a4f3cac05501ee4007c55c4de10cd02a40293233869b5bc5ecac ..."
+                        },
+                        "expires_in": {
+                          "type": "integer",
+                          "example": 86400
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/statements": {
+      "post": {
+        "tags": [
+          "Statement"
+        ],
+        "summary": "Create statement",
+        "description": "Create statement",
+        "operationId": "addStatement",
+        "requestBody": {
+          "description": "Create statement",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "title",
+                  "author_name",
+                  "date_published"
+                ],
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Title"
+                  },
+                  "author_name": {
+                    "type": "string",
+                    "example": "Jon"
+                  },
+                  "date_published": {
+                    "type": "string",
+                    "example": "2023-01-24"
+                  },
+                  "source_url": {
+                    "type": "string",
+                    "example": "https://example.com"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Hello World"
+                  },
+                  "is_published": {
+                    "type": "bool",
+                    "example": true
+                  },
+                  "source_title": {
+                    "type": "string",
+                    "example": "Example"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "required": null,
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string",
+                          "example": "Title"
+                        },
+                        "owner_id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "example": 1234
+                        },
+                        "source_url": {
+                          "type": "string",
+                          "example": "https://example.com"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Hello World"
+                        },
+                        "author_name": {
+                          "type": "string",
+                          "example": "Jon"
+                        },
+                        "is_published": {
+                          "type": "bool",
+                          "example": true
+                        },
+                        "source_title": {
+                          "type": "string",
+                          "example": "Example"
+                        },
+                        "date_published": {
+                          "type": "string",
+                          "example": "2023-01-24"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Statement"
+        ],
+        "summary": "Get Statement",
+        "description": "Get all statement",
+        "requestBody": {
+          "description": "Get Statement",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "example": 100
+                  },
+                  "page": {
+                    "type": "integer",
+                    "example": 2
+                  },
+                  "query": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "current_page": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "required": null,
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "example": "Title"
+                          },
+                          "author_name": {
+                            "type": "string",
+                            "example": "Jon"
+                          },
+                          "date_published": {
+                            "type": "string",
+                            "example": "2023-01-24"
+                          },
+                          "source_url": {
+                            "type": "string",
+                            "example": "https://example.com"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "Hello World"
+                          },
+                          "is_published": {
+                            "type": "bool",
+                            "example": true
+                          },
+                          "source_title": {
+                            "type": "string",
+                            "example": "Example"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/statements/{id}": {
+      "patch": {
+        "tags": [
+          "Statement"
+        ],
+        "summary": "Update statement",
+        "description": "Update statement",
+        "operationId": "updateStatement",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Statement id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update statement",
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "title",
+                  "author_name",
+                  "date_published"
+                ],
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Title"
+                  },
+                  "author_name": {
+                    "type": "string",
+                    "example": "Jon"
+                  },
+                  "date_published": {
+                    "type": "string",
+                    "example": "2023-01-24"
+                  },
+                  "source_url": {
+                    "type": "string",
+                    "example": "https://example.com"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Hello World"
+                  },
+                  "is_published": {
+                    "type": "bool",
+                    "example": true
+                  },
+                  "source_title": {
+                    "type": "string",
+                    "example": "Example"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/paths/~1statements/post/responses/200/content/application~1json/schema/properties/data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied for modifying statement"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Statement"
+        ],
+        "summary": "Delete statement",
+        "description": "Delete statement",
+        "operationId": "deleteStatement",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Statement id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "success": {
+                          "type": "bool",
+                          "example": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied for modifying statement"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+tags:
+  - Auth
+summary: Login
+description: Login
+operationId: login
+requestBody:
+  description: Create statement
+  content:
+    application/json:
+      schema:
+        $ref: ./definitions/login.yaml
+  required: true
+
+responses:
+  '200':
+    description: Ok
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              $ref: ./definitions/login-response.yaml
+  '422':
+    description: Unprocessable Entity
+security:
+  - bearer: [ ]

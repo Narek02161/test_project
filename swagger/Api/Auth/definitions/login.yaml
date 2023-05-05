@@ -1,0 +1,13 @@
+required:
+  - email
+  - password
+type: object
+properties:
+  email:
+    type: string
+    example: jon@gmail.com
+    required: true
+  password:
+    type: string
+    example: 123456
+    required: true

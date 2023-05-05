@@ -1,0 +1,28 @@
+required:
+type: object
+properties:
+  title:
+    type: string
+    example: Title
+  owner_id:
+    type: integer
+    format: int64
+    example: 1234
+  source_url:
+    type: string
+    example: https://example.com
+  description:
+    type: string
+    example: Hello World
+  author_name:
+    type: string
+    example: Jon
+  is_published:
+    type: bool
+    example: true
+  source_title:
+    type: string
+    example: Example
+  date_published:
+    type: string
+    example: '2023-01-24'
